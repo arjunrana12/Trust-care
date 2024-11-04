@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="images/">
+</head>
+<body>
+
+    <header class="header-main-section">
+        <div class="container">
+            <div class="inner-head">
+                <div class="top-head">
+                    <div class="left-head">  
+                    </div>
+                    <div class="right-head">
+                        <ul class="listttt">
+                            <li><i class="fas fa-phone-alt"></i> <a href=" +91 8288065983">+91 82880 65983</a> </li>
+                            <li><i class="fas fa-envelope"></i> <a href="mailto:turstcarepharmaceutical@gmail.com">turstcarepharmaceutical@gmail.com</a> </li>                         
+                        </ul>
+                    </div>
+                </div>
+                <div class="bottom-head">
+                    <div class="logo">
+                        <a href="index.php"><img src="download.png" alt=""></a>
+                    </div>
+                     <nav>
+                        <ul class="dropdown-items">
+                            <li><a href="#" class="dropdown-link">Web Development Bootcamp</a></li>
+                            <li><a href="#" class="dropdown-link">HTML and CSS for Beginner</a></li>
+                            <li><a href="#" class="dropdown-link">Complete Modern JavaScript</a></li>
+                            <li><a href="#" class="dropdown-link">Complete React with Redux</a></li>
+                          </ul>
+                        </div>
+                        <div class="dropdown-group">
+                          <div class="dropdown-title">
+                            <span class="text-base font-medium">Web Design</span>
+                          </div>
+                          <ul class="dropdown-items">
+                            <li><a href="#" class="dropdown-link">Web Design Bootcamp</a></li>
+                            <li><a href="#" class="dropdown-link">Responsive Web Design</a></li>
+                            <li><a href="#" class="dropdown-link">Figma for Web Designer</a></li>
+                            <li><a href="#" class="dropdown-link">Webflow for Beginners</a></li>
+                          </ul>
+                        </div>
+                        <div class="dropdown-group">
+                          <div class="dropdown-title">
+                            <span class="text-base font-medium">Certification</span>
+                          </div>
+                          <ul class="dropdown-items">
+                            <li><a href="#" class="dropdown-link">Free Certificates</a></li>
+                            <li><a href="#" class="dropdown-link">Courses Certificates</a></li>
+                            <li><a href="#" class="dropdown-link">Premium Certificates</a></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="menu-item dropdown">
+                    <span class="dropdown-toggle menu-link">
+                      Discover
+                    </span>
+                    <div class="dropdown-content">
+                      <div class="dropdown-column">
+                        <div class="dropdown-group">
+                          <div class="dropdown-block">
+                            <div class="dropdown-inner">
+                              <a href="#" class="text-base font-medium">Podcasts</a>
+                              <p class="text-base font-normal">
+                                Hear and enjoy our inspiration podcast together with us.
+                              </p>
+                            </div>
+                          </div>
+                          <div class="dropdown-block">
+                            <div class="dropdown-inner">
+                              <a href="#" class="text-base font-medium">Tutorials</a>
+                              <p class="text-base font-normal">
+                                Learn video tutorial with our professional instructors.
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="dropdown-group">
+                          <div class="dropdown-block">
+                            <div class="dropdown-inner">
+                              <a href="#" class="text-base font-medium">Help Center</a>
+                              <p class="text-base font-normal">
+                                Discover how to register, install and use our products.
+                              </p>
+                            </div>
+                          </div>
+                          <div class="dropdown-block">
+                            <div class="dropdown-inner">
+                              <a href="#" class="text-base font-medium">Community</a>
+                              <p class="text-base font-normal">
+                                Share and connect with other user in our communities.
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="menu-item"><a href="#" class="menu-link">Pricing</a></li>
+                  <li class="menu-item"><a href="#" class="menu-link">Support</a></li>
+                </ul>
+                     </nav>
+                </div>
+
+            </div>
+        </div>
+    </header>
+ 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script>
+        // Toggle to show and hide navbar menu
+const navbarMenu = document.getElementById("menu");
+const burgerMenu = document.getElementById("burger");
+
+burgerMenu.addEventListener("click", () => {
+  navbarMenu.classList.toggle("is-active");
+  burgerMenu.classList.toggle("is-active");
+});
+
+// Toggle to show and hide dropdown menu
+const dropdown = document.querySelectorAll(".dropdown");
+
+dropdown.forEach((item) => {
+  const dropdownToggle = item.querySelector(".dropdown-toggle");
+
+  dropdownToggle.addEventListener("click", () => {
+    const dropdownShow = document.querySelector(".dropdown-show");
+    toggleDropdownItem(item);
+
+    // Remove 'dropdown-show' class from other dropdown
+    if (dropdownShow && dropdownShow != item) {
+      toggleDropdownItem(dropdownShow);
+    }
+  });
+});
+
+// Function to display the dropdown menu
+const toggleDropdownItem = (item) => {
+  const dropdownContent = item.querySelector(".dropdown-content");
+
+  // Remove other dropdown that have 'dropdown-show' class
+  if (item.classList.contains("dropdown-show")) {
+    dropdownContent.removeAttribute("style");
+    item.classList.remove("dropdown-show");
+  } else {
+    // Added max-height on active 'dropdown-show' class
+    dropdownContent.style.height = dropdownContent.scrollHeight + "px";
+    item.classList.add("dropdown-show");
+  }
+};
+
+// Fixed dropdown menu on window resizing
+window.addEventListener("resize", () => {
+  if (window.innerWidth > 992) {
+    document.querySelectorAll(".dropdown-content").forEach((item) => {
+      item.removeAttribute("style");
+    });
+    dropdown.forEach((item) => {
+      item.classList.remove("dropdown-show");
+    });
+  }
+});
+
+// Fixed navbar menu on window resizing
+window.addEventListener("resize", () => {
+  if (window.innerWidth > 992) {
+    if (navbarMenu.classList.contains("is-active")) {
+      navbarMenu.classList.remove("is-active");
+      burgerMenu.classList.remove("is-active");
+    }
+  }
+});
+
+    </script>
+</body>
+</html>
